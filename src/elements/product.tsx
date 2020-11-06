@@ -1,6 +1,6 @@
 import React from 'react';
 import { Product } from '../interface/product';
-import { ProductImageComponent } from './product_image';
+import { Image } from './image';
 
 export interface ProductComponentProps {
     product: Product;
@@ -9,7 +9,6 @@ export interface ProductComponentProps {
 export const ProductComponent = ({ product }: ProductComponentProps) => {
     const {
         Artikelnummer,
-        atp,
         BUP_Conversion,
         BUP_UOM,
         BUP_Value,
@@ -20,7 +19,6 @@ export const ProductComponent = ({ product }: ProductComponentProps) => {
         Hardheid,
         Kleur,
         listPrice,
-        manufacturerImage,
         manufacturerName,
         Materiaal,
         minQuantity,
@@ -37,36 +35,55 @@ export const ProductComponent = ({ product }: ProductComponentProps) => {
     return (
         <div className="product">
             <div className="product__header">
-                {!!productImage && <ProductImageComponent src={productImage} />}
-                <h2>{name}</h2>
+                {!!productImage && (
+                    <Image
+                        src={productImage}
+                        key={productImage}
+                        defaultSize={100}
+                    />
+                )}
+                <h2 className="title">{name}</h2>
+                <div className="product__price">
+                    <h3>{listPrice}</h3>
+                    <span className="product_uom">{!!uom && `per ${uom} / excl. btw`}</span>
+                </div>
             </div>
-            <div>{Artikelnummer}</div>
-            <div>{JSON.stringify(atp)}</div>
-            <div>{BUP_Conversion}</div>
-            <div>{BUP_UOM}</div>
-            <div>{BUP_Value}</div>
-            <div>{badges}</div>
-            <div>{channel}</div>
-            <div>{display}</div>
-            <div>{grossPrice}</div>
-            <div>{Hardheid}</div>
-            <div>{product['Inwendige Diameter']}</div>
-            <div>{Kleur}</div>
-            <div>{listPrice}</div>
-            <div>{product['Maat Volgens AS568']}</div>
-            <div>{manufacturerImage}</div>
-            <div>{manufacturerName}</div>
-            <div>{Materiaal}</div>
-            <div>{minQuantity}</div>
-            <div>{name}</div>
-            <div>{productImage}</div>
-            <div>{salePrice}</div>
-            <div>{sku}</div>
-            <div>{Snoerdikte}</div>
-            <div>{Temperatuurgebied}</div>
-            <div>{Toepassing}</div>
-            <div>{stepQuantity}</div>
-            <div>{uom}</div>
+            <div className="product__attributes">
+                <div className="product__badges">
+                    {(badges.split('|') || []).map(
+                        (src: string, index: number) => (
+                            <Image
+                                key={`${index}-${src}`}
+                                src={src}
+                                defaultSize={40}
+                            />
+                        )
+                    )}
+                </div>
+                <div>{Artikelnummer || '-'}</div>
+                <div>{BUP_Conversion || '-'}</div>
+                <div>{BUP_UOM || '-'}</div>
+                <div>{BUP_Value || '-'}</div>
+                <div>{channel || '-'}</div>
+                <div>{display || '-'}</div>
+                <div>{grossPrice || '-'}</div>
+                <div>{Hardheid || '-'}</div>
+                <div>{product['Inwendige Diameter'] || '-'}</div>
+                <div>{Kleur || '-'}</div>
+                <div>{listPrice || '-'}</div>
+                <div>{product['Maat Volgens AS568'] || '-'}</div>
+                <div>{manufacturerName || '-'}</div>
+                <div>{Materiaal || '-'}</div>
+                <div>{minQuantity || '-'}</div>
+                <div className="name">{name || '-'}</div>
+                <div>{salePrice || '-'}</div>
+                <div>{sku || '-'}</div>
+                <div>{Snoerdikte || '-'}</div>
+                <div>{Temperatuurgebied || '-'}</div>
+                <div>{Toepassing || '-'}</div>
+                <div>{stepQuantity || '-'}</div>
+                <div>{uom || '-'}</div>
+            </div>
         </div>
     );
 };

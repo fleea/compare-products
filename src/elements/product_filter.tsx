@@ -12,7 +12,7 @@ export const ProductFilterComponent = ({
         if (onChange) onChange(event.target.checked);
     };
     return (
-        <label htmlFor={`selection-${Artikelnummer}`}>
+        <div className="products__selection">
             <input
                 name="isGoing"
                 id={`selection-${Artikelnummer}`}
@@ -20,8 +20,8 @@ export const ProductFilterComponent = ({
                 checked={isSelected}
                 onChange={handleChange}
             />
-            {name}
-        </label>
+            <label htmlFor={`selection-${Artikelnummer}`}>{name}</label>
+        </div>
     );
 };
 
@@ -32,19 +32,24 @@ export const ProductsFilterComponent = ({
 }: SelectionArrayProps<ProductFilter>) => {
     const isProductSelected = (Articlenumber: string) =>
         selected.includes(Articlenumber);
-    const handleSelectedChange = (Articlenumber: string) => (isSelected: boolean) => {
-        if(!!isSelected && !isProductSelected(Articlenumber)) onChange([...selected, Articlenumber])
-        if(!isSelected && !!isProductSelected(Articlenumber)) onChange(selected.filter(a => a !== Articlenumber))
-    }
+    const handleSelectedChange = (Articlenumber: string) => (
+        isSelected: boolean
+    ) => {
+        if (!!isSelected && !isProductSelected(Articlenumber))
+            onChange([...selected, Articlenumber]);
+        if (!isSelected && !!isProductSelected(Articlenumber))
+            onChange(selected.filter((a) => a !== Articlenumber));
+    };
     return (
-        <>
-            {(full || []).map((p: ProductFilter) => (
+        <div className="products__filter">
+            {(full || []).map((p: ProductFilter, index: number) => (
                 <ProductFilterComponent
+                    key={index}
                     value={p}
                     isSelected={isProductSelected(p.Artikelnummer)}
                     onChange={handleSelectedChange(p.Artikelnummer)}
                 />
             ))}
-        </>
+        </div>
     );
 };
