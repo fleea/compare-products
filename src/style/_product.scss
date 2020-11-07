@@ -6,6 +6,7 @@ $gray_bg: #eaeaea;
 }
 .products {
     display: flex;
+    border-top: 1px solid $gray_bg;
     > div {
         flex: 0 0 20%;
         overflow: hidden;

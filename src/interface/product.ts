@@ -9,10 +9,10 @@ export interface Product {
     display: boolean;
     grossPrice: number;
     Hardheid: number;
-    'Inwendige Diameter': number;
+    'Inwendige Diameter'?: number;
     Kleur: string;
     listPrice: number;
-    'Maat Volgens AS568': number;
+    'Maat Volgens AS568'?: number;
     manufacturerImage: string;
     manufacturerName: string;
     Materiaal: string;
