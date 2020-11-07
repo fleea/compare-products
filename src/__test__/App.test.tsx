@@ -34,6 +34,6 @@ test('handles server error', async () => {
 
 test('load 3 products from mock data', async () => {
     render(<App />);
-    await waitFor(() => screen.getAllByRole('product'));
-    expect(screen.getAllByRole('product')).toHaveLength(3);
+    await waitFor(() => screen.getAllByRole('listitem'));
+    expect(screen.getAllByRole('listitem')).toHaveLength(3);
 });
