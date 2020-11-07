@@ -33,7 +33,7 @@ export const ProductComponent = ({ product }: ProductComponentProps) => {
         uom,
     } = product;
     return (
-        <div className="product">
+        <div className="product" role="product">
             <div className="product__header">
                 {!!productImage && (
                     <Image
@@ -42,7 +42,9 @@ export const ProductComponent = ({ product }: ProductComponentProps) => {
                         defaultSize={100}
                     />
                 )}
-                <h2 className="title">{name}</h2>
+                <h2 className="title" role="product-title">
+                    {name}
+                </h2>
                 <div className="product__price">
                     <h3>{listPrice}</h3>
                     <span className="product_uom">
@@ -77,7 +79,6 @@ export const ProductComponent = ({ product }: ProductComponentProps) => {
                 <div>{manufacturerName || '-'}</div>
                 <div>{Materiaal || '-'}</div>
                 <div>{minQuantity || '-'}</div>
-                <div className="name">{name || '-'}</div>
                 <div>{salePrice || '-'}</div>
                 <div>{sku || '-'}</div>
                 <div>{Snoerdikte || '-'}</div>

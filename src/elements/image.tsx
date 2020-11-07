@@ -27,6 +27,7 @@ export const Image = ({ src, defaultSize = 100 }: ImageProps) => {
                     className="product__image"
                     src={src}
                     key={src}
+                    alt={src}
                 />
             )}
         </div>

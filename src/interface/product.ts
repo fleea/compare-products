@@ -20,7 +20,7 @@ export interface Product {
     name: string;
     productImage: string;
     salePrice: number;
-    sku: number;
+    sku: string;
     Snoerdikte: number;
     Temperatuurgebied: string;
     Toepassing: string;
