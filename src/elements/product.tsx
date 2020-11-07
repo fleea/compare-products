@@ -45,7 +45,9 @@ export const ProductComponent = ({ product }: ProductComponentProps) => {
                 <h2 className="title">{name}</h2>
                 <div className="product__price">
                     <h3>{listPrice}</h3>
-                    <span className="product_uom">{!!uom && `per ${uom} / excl. btw`}</span>
+                    <span className="product_uom">
+                        {!!uom && `per ${uom} / excl. btw`}
+                    </span>
                 </div>
             </div>
             <div className="product__attributes">

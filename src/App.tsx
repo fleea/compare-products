@@ -11,7 +11,6 @@ import { ProductsFilterComponent } from './elements/product_filter';
 const getSelection = (products: Product[]): string[] =>
     (products || []).map(({ Artikelnummer }: Product) => Artikelnummer);
 
-
 /**
  * REGARDING DYNAMIC ATTRIBUTES
  * 1. The easiest method is just to hardcode the attributes and manually sorting it.
