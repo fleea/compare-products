@@ -29,8 +29,6 @@ export const mockProducts: Data = {
             Snoerdikte: 1.78,
             listPrice: 0.66,
             channel: 'nl_NL',
-            display: true,
-            atp: {},
         },
         {
             Toepassing: 'Voedsel en dranken',
@@ -59,8 +57,6 @@ export const mockProducts: Data = {
             Snoerdikte: 2.62,
             listPrice: 1.36,
             channel: 'nl_NL',
-            display: true,
-            atp: {},
         },
         {
             Toepassing: 'Voedsel en dranken',
@@ -89,8 +85,6 @@ export const mockProducts: Data = {
             Snoerdikte: 1.78,
             listPrice: 0.66,
             channel: 'nl_NL',
-            display: true,
-            atp: {},
         },
     ],
 };

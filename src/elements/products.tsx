@@ -1,6 +1,6 @@
 import React from 'react';
 import { Product } from '../interface/product';
-import { SelectionArrayProps } from '../interface/value';
+import { SelectionArrayProps, WithAttributes } from '../interface/value';
 import { ProductComponent } from './product';
 import { ProductsAttributesComponent } from './product_attributes';
 import { ProductsFilterComponent } from './product_filter';
@@ -16,11 +16,16 @@ import { ProductsFilterComponent } from './product_filter';
  *    c. The number of compared products are limited, because the dynamic functions will be called every render/data loading
  */
 
+interface ProductsComponentProps
+    extends SelectionArrayProps<Product>,
+        WithAttributes {}
+
 export const ProductsComponent = ({
     full,
     selected,
     onChange,
-}: SelectionArrayProps<Product>) => {
+    attributes,
+}: ProductsComponentProps) => {
     const showSelected = ({ Artikelnummer }: Product) =>
         selected.includes(Artikelnummer);
     return (
@@ -34,12 +39,16 @@ export const ProductsComponent = ({
                         onChange={onChange}
                     />
                 </div>
-                <ProductsAttributesComponent />
+                <ProductsAttributesComponent attributes={attributes} />
             </div>
             {(full || [])
                 .filter(showSelected)
                 .map((product: Product, index: number) => (
-                    <ProductComponent key={index} product={product} />
+                    <ProductComponent
+                        key={index}
+                        product={product}
+                        attributes={attributes}
+                    />
                 ))}
         </div>
     );

@@ -63,10 +63,14 @@ $breakpoint-tablet: 768px;
         }
         &-key {
             display: none;
+            text-transform: capitalize;
             .products__row-header & {
                 display: flex;
                 flex-direction: column;
             }
+        }
+        .compare {
+            background-color: $gray_bg;
         }
     }
     &__uom {

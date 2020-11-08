@@ -1,38 +1,18 @@
 import React from 'react';
 import { Product } from '../interface/product';
+import { WithAttributes } from '../interface/value';
 import { Image } from './image';
 import { ProductsAttributesComponent } from './product_attributes';
 
-export interface ProductComponentProps {
+export interface ProductComponentProps extends WithAttributes {
     product: Product;
 }
 
-export const ProductComponent = ({ product }: ProductComponentProps) => {
-    const {
-        Artikelnummer,
-        BUP_Conversion,
-        BUP_UOM,
-        BUP_Value,
-        badges,
-        channel,
-        display,
-        grossPrice,
-        Hardheid,
-        Kleur,
-        listPrice,
-        manufacturerName,
-        Materiaal,
-        minQuantity,
-        name,
-        productImage,
-        salePrice,
-        sku,
-        Snoerdikte,
-        Temperatuurgebied,
-        Toepassing,
-        stepQuantity,
-        uom,
-    } = product;
+export const ProductComponent = ({
+    product,
+    attributes = [],
+}: ProductComponentProps) => {
+    const { badges, listPrice, name, productImage, uom } = product;
     return (
         <div className="product" role="listitem">
             <div className="product__header">
@@ -54,7 +34,7 @@ export const ProductComponent = ({ product }: ProductComponentProps) => {
                 </div>
             </div>
             <div className="product__attributes-container">
-                <ProductsAttributesComponent />
+                <ProductsAttributesComponent attributes={attributes} />
                 <div className="product__attributes">
                     <div className="product__badges">
                         {(badges.split('|') || []).map(
@@ -67,28 +47,16 @@ export const ProductComponent = ({ product }: ProductComponentProps) => {
                             )
                         )}
                     </div>
-                    <div>{Artikelnummer || '-'}</div>
-                    <div>{BUP_Conversion || '-'}</div>
-                    <div>{BUP_UOM || '-'}</div>
-                    <div>{BUP_Value || '-'}</div>
-                    <div>{channel || '-'}</div>
-                    <div>{display || '-'}</div>
-                    <div>{grossPrice || '-'}</div>
-                    <div>{Hardheid || '-'}</div>
-                    <div>{product['Inwendige Diameter'] || '-'}</div>
-                    <div>{Kleur || '-'}</div>
-                    <div>{listPrice || '-'}</div>
-                    <div>{product['Maat Volgens AS568'] || '-'}</div>
-                    <div>{manufacturerName || '-'}</div>
-                    <div>{Materiaal || '-'}</div>
-                    <div>{minQuantity || '-'}</div>
-                    <div>{salePrice || '-'}</div>
-                    <div>{sku || '-'}</div>
-                    <div>{Snoerdikte || '-'}</div>
-                    <div>{Temperatuurgebied || '-'}</div>
-                    <div>{Toepassing || '-'}</div>
-                    <div>{stepQuantity || '-'}</div>
-                    <div>{uom || '-'}</div>
+                    {attributes.map(({ key, toBeCompared }) => (
+                        <div
+                            key={key}
+                            className={`attr-value${
+                                toBeCompared ? ' compare' : ''
+                            }`}
+                        >
+                            {product[key] || '-'}
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>
